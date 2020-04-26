@@ -44,18 +44,18 @@
                   v-model="firstName"
                 />
                 <v-text-field
+                  v-model="lastName"
                   label="นามสกุล"
                   prepend-icon="mdi-account"
                   required
                   :rules="[(v) => !!v || 'กรุณาระบุนามสกุล']"
                   type="text"
-                  v-model="lastName"
                 />
               </v-form>
             </v-card-text>
             <v-card-actions>
               <v-spacer />
-              <v-btn color="success" @click="hendleLogin" type="button"
+              <v-btn color="success" type="button" @click="hendleLogin"
                 >Create</v-btn
               >
             </v-card-actions>
