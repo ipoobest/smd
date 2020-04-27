@@ -18,8 +18,8 @@
             :headers="headers"
             :items="items"
             :items-per-page="20"
-            @pagination="handlePagination"
             :search="search"
+            @pagination="handlePagination"
           >
           </v-data-table>
         </v-card>

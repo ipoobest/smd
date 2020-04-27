@@ -11,28 +11,28 @@
               <v-card-text>
                 <v-form ref="form" lazy-validation>
                   <v-text-field
+                    v-model="username"
                     label="Login"
                     prepend-icon="mdi-account"
                     required
                     :rules="[(v) => !!v || 'Username is required']"
                     type="text"
-                    v-model="username"
                   />
 
                   <v-text-field
-                    @keypress="(e) => e.keyCode === 13 && handleLogin()"
+                    v-model="password"
                     label="Password"
                     prepend-icon="mdi-key"
                     required
                     :rules="[(v) => !!v || 'Password is required']"
                     type="password"
-                    v-model="password"
+                    @keypress="(e) => e.keyCode === 13 && handleLogin()"
                   />
                 </v-form>
               </v-card-text>
               <v-card-actions>
                 <v-spacer />
-                <v-btn color="primary" @click="handleLogin" type="button"
+                <v-btn color="primary" type="button" @click="handleLogin"
                   >Login</v-btn
                 >
               </v-card-actions>

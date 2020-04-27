@@ -5,7 +5,7 @@
         <v-card>
           <v-card-title>
             {{ title }}
-            <v-spacer></v-spacer>
+            <v-spacer> </v-spacer>
             <v-text-field
               v-model="search"
               append-icon="mdi-magnify"
@@ -18,8 +18,8 @@
             :headers="headers"
             :items="items"
             :items-per-page="20"
-            @pagination="handlePagination"
             :search="search"
+            @pagination="handlePagination"
           >
           </v-data-table>
         </v-card>

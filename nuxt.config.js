@@ -44,7 +44,8 @@ module.exports = {
    */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/auth'
   ],
   /*
    ** Axios module configuration
@@ -55,6 +56,30 @@ module.exports = {
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
    */
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: 'http://27.254.156.3:1337/parse/login',
+            method: 'get',
+            propertyName: 'sessionToken'
+          },
+          logout: {
+            url: 'http://27.254.156.3:1337/parse/logout',
+            method: 'post'
+          },
+          user: {
+            url: 'http://27.254.156.3:1337/parse/users/me',
+            method: 'get'
+          }
+        }
+        // tokenRequired: true,
+        // tokenType: 'bearer'
+        // autoFetchUser: true
+      }
+    }
+  },
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: {

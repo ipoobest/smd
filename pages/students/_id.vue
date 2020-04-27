@@ -44,7 +44,7 @@ export default {
       title: ``
     }
   },
-  methods: {},
-  mounted() {}
+  mounted() {},
+  methods: {}
 }
 </script>

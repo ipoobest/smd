@@ -20,8 +20,8 @@
             :headers="headers"
             :items="items"
             :items-per-page="20"
-            @pagination="handlePagination"
             :search="search"
+            @pagination="handlePagination"
           ></v-data-table>
         </v-card>
       </v-col>
@@ -36,8 +36,19 @@ export default {
       headers: [],
       items: [],
       search: ``,
-      title: `ครู`
+      title: `ครู`,
+      datas: []
     }
+  },
+  async mounted() {
+    // this.getDataFromApi().then((result) => (this.items = result))
+    const url = 'http://27.254.156.3:1337/parse/classes/teachers'
+    const headers = {
+      'X-Parse-Application-Id': '37151b935e618517d2467aaa4e10f8ed'
+    }
+    const data = await this.$axios.$get(url, { headers })
+    this.datas = data
+    console.log('result ', data)
   },
   methods: {
     async getDataFromApi(limit = 50, skip = 0) {
@@ -59,9 +70,6 @@ export default {
         name: 'teachers-form'
       })
     }
-  },
-  mounted() {
-    this.getDataFromApi().then((result) => (this.items = result))
   }
 }
 </script>

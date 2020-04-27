@@ -6,22 +6,22 @@
           <v-card-title>
             {{ title }}
             <v-btn class="success ml-5" @click="createStudent">เพิ่ม</v-btn>
-            <v-spacer></v-spacer>
+            <v-spacer />
             <v-text-field
               v-model="search"
               append-icon="mdi-magnify"
               label="Search"
               single-line
               hide-details
-            ></v-text-field>
+            />
           </v-card-title>
           <v-data-table
             :headers="headers"
             :items="items"
             :items-per-page="20"
-            @pagination="handlePagination"
             :search="search"
-          ></v-data-table>
+            @pagination="handlePagination"
+          />
         </v-card>
       </v-col>
     </v-row>
@@ -54,6 +54,7 @@ export default {
       }
     },
     createStudent() {
+      // eslint-disable-next-line no-console
       console.log('create')
     },
     mounted() {

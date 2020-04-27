@@ -67,6 +67,7 @@ export default {
         this.items = result.data
       }
 
+      // eslint-disable-next-line no-console
       reader.onerror = () => console.log(`Unable to read file.`)
     },
     handleRemoveItem(item, key) {

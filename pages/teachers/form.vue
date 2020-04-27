@@ -10,38 +10,38 @@
             <v-card-text>
               <v-form ref="form" lazy-validation>
                 <v-text-field
+                  v-model="teacherId"
                   label="หมายเลขประจำตัว"
                   prepend-icon="mdi-account"
                   required
                   :rules="[(v) => !!v || 'กรุณาระบุหมายเลขประจำตัว']"
                   type="text"
-                  v-model="teacherId"
                 />
                 <v-text-field
+                  v-model="teacherPosition"
                   label="ตำแหน่ง"
                   prepend-icon="mdi-account"
                   required
                   :rules="[(v) => !!v || 'กรุณาระบุตำแหน่ง']"
                   type="text"
-                  v-model="teacherPosition"
                 />
 
                 <v-text-field
+                  v-model="teacherTitle"
                   label="คำนำหน้า"
                   prepend-icon="mdi-account"
                   required
                   :rules="[(v) => !!v || 'กรุณาระบุคำนำหน้าชื่อ']"
                   type="text"
-                  v-model="teacherTitle"
                 />
 
                 <v-text-field
+                  v-model="firstName"
                   label="ชื่อ"
                   prepend-icon="mdi-account"
                   required
                   :rules="[(v) => !!v || 'กรุณาระบุชื่อ']"
                   type="text"
-                  v-model="firstName"
                 />
                 <v-text-field
                   v-model="lastName"
@@ -78,8 +78,23 @@ export default {
     }
   },
   methods: {
-    hendleLogin() {
-      console.log('xxxxxx')
+    async hendleLogin() {
+      console.log('xxxx', this.teacherId)
+      const urls = 'http://27.254.156.3:1337/parse/classes/teachers'
+      const datas = {
+        teacherId: this.teacherId,
+        teacherPosition: this.teacherPosition,
+        title: this.teacherTitle,
+        firstName: this.firstName,
+        lastName: this.lastName
+      }
+      const headers = {
+        'X-Parse-Application-Id': '37151b935e618517d2467aaa4e10f8ed'
+      }
+      const response = await this.$axios.$post(urls, datas, { headers })
+      if (response.objectId != null) {
+        this.$router.replace({ name: 'teachers' })
+      }
     }
   }
 }
