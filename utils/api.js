@@ -9,7 +9,10 @@ import axios from 'axios'
 // }
 
 export async function request(method, url, data) {
-  const headers = { 'X-Parse-Application-Id': `${process.env.parseAppId}` }
+  const headers = {
+    'X-Parse-Application-Id': `${process.env.parseAppId}`
+    // 'X-Parse-Session-Token': 'xxxx'
+  }
   try {
     // call api
     const response = await axios({

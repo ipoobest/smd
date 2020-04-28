@@ -34,32 +34,53 @@
                   </template>
                   <v-card>
                     <v-card-title>
-                      <span class="headline">สร้างบัญชีผู้ใช้สำหรับครู</span>
+                      <span class="headline">สร้าง/แก้ไข</span>
                     </v-card-title>
 
                     <v-card-text>
                       <v-container>
                         <v-row>
                           <v-col cols="12" sm="6" md="6">
-                            <v-text-field label="username"></v-text-field>
+                            <v-text-field
+                              v-model="editedItem.username"
+                              label="username"
+                            ></v-text-field>
                           </v-col>
                           <v-col cols="12" sm="6" md="6">
-                            <v-text-field label="password"></v-text-field>
+                            <v-text-field
+                              v-model="editedItem.password"
+                              label="password"
+                            ></v-text-field>
                           </v-col>
                           <v-col cols="12" sm="6" md="4">
-                            <v-text-field label="รหัสประจำตัว"></v-text-field>
+                            <v-text-field
+                              v-model="editedItem.teacherId"
+                              label="รหัสประจำตัว"
+                            ></v-text-field>
                           </v-col>
                           <v-col cols="12" sm="6" md="4">
-                            <v-text-field label="ตำแหน่ง"></v-text-field>
+                            <v-text-field
+                              v-model="editedItem.teacherPosition"
+                              label="ตำแหน่ง"
+                            ></v-text-field>
                           </v-col>
                           <v-col cols="12" sm="6" md="4">
-                            <v-text-field label="คำนำหน้า"></v-text-field>
+                            <v-text-field
+                              v-model="editedItem.title"
+                              label="คำนำหน้า"
+                            ></v-text-field>
                           </v-col>
                           <v-col cols="12" sm="6" md="6">
-                            <v-text-field label="ชื่อ"></v-text-field>
+                            <v-text-field
+                              v-model="editedItem.firstName"
+                              label="ชื่อ"
+                            ></v-text-field>
                           </v-col>
                           <v-col cols="12" sm="6" md="6">
-                            <v-text-field label="นามสกุล"></v-text-field>
+                            <v-text-field
+                              v-model="editedItem.lastName"
+                              label="นามสกุล"
+                            ></v-text-field>
                           </v-col>
                         </v-row>
                       </v-container>
@@ -115,7 +136,18 @@ export default {
       ],
       items: [],
       search: ``,
-      title: `ครู`
+      title: `ครู`,
+      desserts: [],
+      editedIndex: -1,
+      editedItem: {
+        username: '',
+        password: '',
+        teacherId: '',
+        teacherPosition: '',
+        teacherTitle: '',
+        firstName: '',
+        lastName: ''
+      }
     }
   },
   watch: {
@@ -131,6 +163,10 @@ export default {
       const response = await TeachersApi.get()
       console.log('res ', response.data.results)
       this.items = response.data.results
+    },
+    async updateTeacher(item) {
+      const response = await TeachersApi.update(item)
+      console.log('res ', response)
     },
     async handlePagination(e) {
       if (e.page === e.pageCount) {
@@ -149,12 +185,16 @@ export default {
         name: 'teachers-form'
       })
     },
-    editItem(itemId) {
-      console.log('item id ', itemId)
-      this.close()
+    editItem(item) {
+      console.log('item id ', item.objectId)
+      // this.editedIndex = this.desserts.indexOf(item)
+      this.editedItem = Object.assign({}, item)
+      this.updateTeacher(item)
+      this.dialog = true
     },
-    delete(itemId) {
-      console.log('item id ', itemId)
+    deleteItem(item) {
+      const index = this.desserts.indexOf(item)
+      confirm('ยืนยีนการลบบัญชีผู้ใช้') && this.desserts.splice(index, 1)
     },
     close() {
       console.log('closd')

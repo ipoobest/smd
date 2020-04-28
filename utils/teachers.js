@@ -14,8 +14,9 @@ export function create(data) {
   return request('post', url, data)
 }
 
-export function edit(data) {
-  const url = `${process.env.parseUrl}/users`
+export function update(data) {
+  const url = `${process.env.parseUrl}/users/${data.objectId}`
+  console.log('urlsss ', url)
   return request('put', url, data)
 }
 
