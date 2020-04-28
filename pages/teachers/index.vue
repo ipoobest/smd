@@ -21,7 +21,6 @@
             :items="items"
             :items-per-page="20"
             :search="search"
-            @pagination="handlePagination"
           ></v-data-table>
         </v-card>
       </v-col>
@@ -33,22 +32,31 @@
 export default {
   data() {
     return {
-      headers: [],
+      headers: [
+        {
+          text: 'หมายเลขประจำตัว',
+          value: 'teacherId'
+        },
+        { text: 'ตำแหน่ง', value: 'teacherPosition' },
+        { text: 'คำนำหน้า', value: 'title' },
+        { text: 'ชื่อ', value: 'firstName' },
+        { text: 'นามสกุล', value: 'lastName' }
+      ],
       items: [],
       search: ``,
-      title: `ครู`,
-      datas: []
+      title: `ครู`
     }
   },
   async mounted() {
+    //  @pagination="handlePagination"
     // this.getDataFromApi().then((result) => (this.items = result))
-    const url = 'http://27.254.156.3:1337/parse/classes/teachers'
+    const url = 'http://27.254.156.3:1337/parse/users?where={"type":"teacher"}'
     const headers = {
       'X-Parse-Application-Id': '37151b935e618517d2467aaa4e10f8ed'
     }
     const data = await this.$axios.$get(url, { headers })
-    this.datas = data
-    console.log('result ', data)
+    this.items = data.results
+    console.log('result ', data.results)
   },
   methods: {
     async getDataFromApi(limit = 50, skip = 0) {
