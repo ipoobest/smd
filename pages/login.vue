@@ -49,18 +49,35 @@
 </template>
 
 <script>
+import * as LoginApi from '@/utils/login'
+// import axios from 'axios'
 export default {
   data() {
     return {
       overlay: false,
-      password: ``,
-      username: ``
+      password: '',
+      username: '',
+      session: ''
     }
   },
   layout: 'blank',
   methods: {
-    handleLogin() {
-      console.log('login')
+    async handleLogin() {
+      console.log('xxx')
+      const data = {
+        username: this.username,
+        password: this.password
+      }
+      const response = await LoginApi.login(data)
+      if (response.data.sessionToken != null) {
+        console.log('session ', response.data.sessionToken)
+        this.setSession(response.data.sessionToken)
+      } else {
+        alert('รหัสผ่านไม่ถูกต้อง')
+      }
+    },
+    setSession(data) {
+      this.$nuxt.$store.commit('setSessionToken', data)
     },
     reset() {
       this.$refs.form.reset()

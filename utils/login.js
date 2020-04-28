@@ -1,8 +1,16 @@
-import { request } from './api'
+import axios from 'axios'
 
-export function login(data) {
-  const url = `${process.env.parseUrl}/login}`
-  return request('get', url, {
-    params: { data }
-  })
+export async function login(data) {
+  const urls = `${process.env.parseUrl}/login`
+
+  const headers = { 'X-Parse-Application-Id': `${process.env.parseAppId}` }
+  try {
+    const response = await axios.get(urls, { params: data, headers })
+    return response
+  } catch (error) {
+    return error
+  }
+  // return request('get', url, {
+  //   params: { data }
+  // })
 }

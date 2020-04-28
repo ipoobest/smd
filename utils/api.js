@@ -11,8 +11,9 @@ import axios from 'axios'
 export async function request(method, url, data) {
   const headers = {
     'X-Parse-Application-Id': `${process.env.parseAppId}`
-    // 'X-Parse-Session-Token': 'xxxx'
+    // 'X-Parse-Session-Token': `${this.$nuxt.$store.state.sessionToken}`
   }
+  console.log('heasersxx ', headers)
   try {
     // call api
     const response = await axios({
