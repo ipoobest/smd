@@ -21,6 +21,7 @@
             :items="items"
             :items-per-page="20"
             :search="search"
+            @pagination="handlePagination"
           ></v-data-table>
         </v-card>
       </v-col>
@@ -47,22 +48,30 @@ export default {
       title: `ครู`
     }
   },
-  async mounted() {
+  mounted() {
     //  @pagination="handlePagination"
-    // this.getDataFromApi().then((result) => (this.items = result))
-    const url = 'http://27.254.156.3:1337/parse/users?where={"type":"teacher"}'
-    const headers = {
-      'X-Parse-Application-Id': '37151b935e618517d2467aaa4e10f8ed'
-    }
-    const data = await this.$axios.$get(url, { headers })
-    this.items = data.results
-    console.log('result ', data.results)
+    this.getDataFromApi().then((result) => (this.items = result))
+    // const url = 'http://27.254.156.3:1337/parse/users?where={"type":"teacher"}'
+    // const headers = {
+    //   'X-Parse-Application-Id': '37151b935e618517d2467aaa4e10f8ed'
+    // }
+    // const data = await this.$axios.$get(url, { headers })
+    // this.items = data.results
+    // console.log('result ', data.results)
   },
   methods: {
     async getDataFromApi(limit = 50, skip = 0) {
-      const variable = await this.$store.dispatch(`teachers/getTeachers`)
+      // const variable = await this.$store.dispatch(`teachers/getTeachers`)
 
-      return variable.results
+      // return variable.results
+      const url =
+        'http://27.254.156.3:1337/parse/users?where={"type":"teacher"}'
+      const headers = {
+        'X-Parse-Application-Id': '37151b935e618517d2467aaa4e10f8ed'
+      }
+      const data = await this.$axios.$get(url, { headers })
+      this.items = data.results
+      console.log('result ', data.results)
     },
     async handlePagination(e) {
       if (e.page === e.pageCount) {
