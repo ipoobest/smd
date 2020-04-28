@@ -59,15 +59,8 @@ export default {
   },
   layout: 'blank',
   methods: {
-    async handleLogin() {
-      if (!!this.username && !!this.password) {
-        try {
-          await this.$store.dispatch(`auth/login`, {
-            username: this.username,
-            password: this.password
-          })
-        } catch (error) {}
-      }
+    handleLogin() {
+      console.log('login')
     },
     reset() {
       this.$refs.form.reset()

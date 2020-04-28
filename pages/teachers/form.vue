@@ -83,6 +83,7 @@
 </template>
 
 <script>
+import * as TeachersApi from '@/utils/teachers'
 export default {
   data() {
     return {
@@ -98,8 +99,8 @@ export default {
   methods: {
     async hendleLogin() {
       console.log('xxxx', this.teacherId)
-      const urls = 'http://27.254.156.3:1337/parse/users'
-      const datas = {
+      // const urls = 'http://27.254.156.3:1337/parse/users'
+      const data = {
         username: this.username,
         password: this.password,
         teacherId: this.teacherId,
@@ -109,11 +110,8 @@ export default {
         lastName: this.lastName,
         type: 'teacher'
       }
-      const headers = {
-        'X-Parse-Application-Id': '37151b935e618517d2467aaa4e10f8ed'
-      }
-      const response = await this.$axios.$post(urls, datas, { headers })
-      console.log('response : ', response)
+      const response = await TeachersApi.create(data)
+      console.log('res ', response)
       if (response.objectId != null) {
         this.$router.replace({ name: 'teachers' })
       }

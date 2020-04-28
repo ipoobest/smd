@@ -105,5 +105,10 @@ module.exports = {
      ** You can extend webpack config here
      */
     extend(config, ctx) {}
+  },
+  env: {
+    parseUrl: `http://27.254.156.3:1337/parse`,
+    parseAppId: `37151b935e618517d2467aaa4e10f8ed`,
+    parseMasterKey: `905de41c9fb82aa9f8a964d8781b935c`
   }
 }
