@@ -5,9 +5,7 @@
         <v-card>
           <v-card-title>
             {{ title }}
-            <!-- <v-btn class="success ml-5" @click="createTeacher">เพิ่ม</v-btn> -->
             <v-spacer></v-spacer>
-
             <v-text-field
               v-model="search"
               append-icon="mdi-magnify"
@@ -34,7 +32,7 @@
                   </template>
                   <v-card>
                     <v-card-title>
-                      <span class="headline">สร้าง/แก้ไข</span>
+                      <span class="headline">{{ formTitle }}</span>
                     </v-card-title>
 
                     <v-card-text>
@@ -146,8 +144,14 @@ export default {
         teacherPosition: '',
         teacherTitle: '',
         firstName: '',
-        lastName: ''
+        lastName: '',
+        type: 'teacher'
       }
+    }
+  },
+  computed: {
+    formTitle() {
+      return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
     }
   },
   watch: {
@@ -164,9 +168,19 @@ export default {
       console.log('res ', response.data.results)
       this.items = response.data.results
     },
+    async createTeacher(data) {
+      console.log('create teacher ', data)
+      const response = await TeachersApi.create(data)
+      console.log('res create', response)
+    },
     async updateTeacher(data) {
       console.log('data update ', data)
       const response = await TeachersApi.update(data)
+      console.log('res ', response)
+    },
+    async deteleTeacher(itemId) {
+      console.log('delete update ', itemId)
+      const response = await TeachersApi.deleteTeacher(itemId)
       console.log('res ', response)
     },
     async handlePagination(e) {
@@ -181,11 +195,6 @@ export default {
     initialize() {
       console.log('initialize')
     },
-    createTeacher() {
-      this.$router.push({
-        name: 'teachers-form'
-      })
-    },
     editItem(item) {
       console.log('item id ', item)
       this.editedIndex = this.items.indexOf(item)
@@ -196,6 +205,7 @@ export default {
     deleteItem(item) {
       const index = this.items.indexOf(item)
       confirm('ยืนยีนการลบบัญชีผู้ใช้') && this.items.splice(index, 1)
+      this.deteleTeacher(item.objectId)
     },
     close() {
       console.log('closd')
@@ -220,6 +230,7 @@ export default {
         this.updateTeacher(editData)
       } else {
         this.items.push(this.editedItem)
+        this.createTeacher(this.editedItem)
       }
       this.close()
     }

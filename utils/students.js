@@ -1,12 +1,12 @@
 import { request } from './api'
 
 export function get() {
-  const url = `${process.env.parseUrl}/users?where={"type":"student"}`
+  const url = `${process.env.parseUrl}/classes/students`
   return request('get', url, {})
 }
 
 export function create(data) {
-  const url = `${process.env.parseUrl}/users`
+  const url = `${process.env.parseUrl}/classes/students`
   return request('post', url, data)
 }
 

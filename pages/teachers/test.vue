@@ -229,8 +229,10 @@ export default {
     save() {
       if (this.editedIndex > -1) {
         Object.assign(this.desserts[this.editedIndex], this.editedItem)
+        console.log('1')
       } else {
         this.desserts.push(this.editedItem)
+        console.log('2')
       }
       this.close()
     }

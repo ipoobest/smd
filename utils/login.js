@@ -10,7 +10,4 @@ export async function login(data) {
   } catch (error) {
     return error
   }
-  // return request('get', url, {
-  //   params: { data }
-  // })
 }
