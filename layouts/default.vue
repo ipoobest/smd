@@ -50,7 +50,7 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title v-text="title" />
       <v-spacer />
-      <v-btn icon to="/logout">
+      <v-btn icon @click="logout">
         <v-icon>mdi-logout</v-icon>
       </v-btn>
     </v-app-bar>
@@ -68,6 +68,7 @@
 </template>
 
 <script>
+import * as UserApi from '@/utils/user'
 export default {
   data() {
     return {
@@ -126,6 +127,11 @@ export default {
       right: true,
       rightDrawer: false,
       title: 'SMD'
+    }
+  },
+  methods: {
+    logout() {
+      console.log('logout')
     }
   }
 }

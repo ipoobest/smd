@@ -14,7 +14,7 @@ export async function request(method, url, data) {
     'X-Parse-Master-Key': `${process.env.parseMasterKey}`,
     'X-Parse-Session-Token': `${window.$nuxt.$store.state.sessionToken}`
   }
-  console.log('heasersxx ', headers)
+  console.log('heasers xx ', headers)
   try {
     // call api
     const response = await axios({

@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import * as LoginsApi from '@/utils/login'
+import * as UserApi from '@/utils/user'
 export default {
   data() {
     return {
@@ -67,7 +67,7 @@ export default {
         username: this.username,
         password: this.password
       }
-      const response = await LoginsApi.login(data)
+      const response = await UserApi.login(data)
       console.log('response ', response)
       if (response.data.sessionToken != null) {
         console.log('sss ', response.data)
