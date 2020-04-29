@@ -149,7 +149,7 @@ export default {
       console.log('createSubject ', response)
     },
     async updateSubject(data) {
-      console.log('data put subjest ', data)
+      console.log('data put subjest ', data.objectId)
       const response = await SubjectApi.update(data)
       console.log('updateSubject ', response)
     },
@@ -172,8 +172,7 @@ export default {
     editItem(item) {
       console.log('item id ', item)
       this.editedIndex = this.items.indexOf(item)
-      this.editedItem = Object.assign({}, item)
-
+      this.datas = Object.assign({}, item)
       this.dialog = true
     },
     deleteItem(item) {
@@ -186,14 +185,14 @@ export default {
       console.log('closd')
       this.dialog = false
       setTimeout(() => {
-        this.editedItem = Object.assign({}, this.defaultItem)
+        this.datas = Object.assign({}, this.defaultItem)
         this.editedIndex = -1
       }, 300)
     },
     save() {
       if (this.editedIndex > -1) {
         Object.assign(this.items[this.editedIndex], this.datas)
-        console.log('put xx ', this.datas)
+        console.log('put xx ', this.items)
         const editdatas = {
           objectId: this.datas.objectId,
           subjectCode: this.datas.subjectCode,
