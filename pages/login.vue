@@ -73,6 +73,8 @@ export default {
         console.log('sss ', response.data)
         this.$nuxt.$store.commit('setSessionToken', response.data.sessionToken)
         this.$router.replace({ name: 'index' })
+      } else {
+        console.log('xxxxx')
       }
     },
     setSession(data) {
