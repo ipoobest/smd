@@ -191,15 +191,15 @@ export default {
       console.log('item id ', item)
       this.editedIndex = this.desserts.indexOf(item)
       this.editedItem = Object.assign({}, item)
-      const editData = {
-        objectId: item.objectId,
-        teacherId: item.teacherId,
-        teacherPosition: item.teacherPosition,
-        title: item.title,
-        firstName: item.firstName,
-        lastName: item.lastName
-      }
-      this.updateTeacher(editData)
+      // const editData = {
+      //   objectId: item.objectId,
+      //   teacherId: item.teacherId,
+      //   teacherPosition: item.teacherPosition,
+      //   title: item.title,
+      //   firstName: item.firstName,
+      //   lastName: item.lastName
+      // }
+      // this.updateTeacher(editData)
       this.dialog = true
     },
     deleteItem(item) {

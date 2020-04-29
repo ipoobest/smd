@@ -67,9 +67,6 @@ export default {
         username: this.username,
         password: this.password
       }
-      // const headers = {
-      //   'X-Parse-Application-Id': '37151b935e618517d2467aaa4e10f8ed'
-      // }
       const response = await LoginsApi.login(data)
       console.log('response ', response)
       if (response.data.sessionToken != null) {
