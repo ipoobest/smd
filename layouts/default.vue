@@ -68,7 +68,6 @@
 </template>
 
 <script>
-import * as UserApi from '@/utils/user'
 export default {
   data() {
     return {
