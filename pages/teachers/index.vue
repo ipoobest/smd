@@ -204,8 +204,9 @@ export default {
     },
     deleteItem(item) {
       const index = this.items.indexOf(item)
-      confirm('ยืนยีนการลบบัญชีผู้ใช้') && this.items.splice(index, 1)
-      this.deteleTeacher(item.objectId)
+      confirm('ยืนยีนการลบบัญชีผู้ใช้') &&
+        this.deteleTeacher(item.objectId) &&
+        this.items.splice(index, 1)
     },
     close() {
       console.log('closd')
