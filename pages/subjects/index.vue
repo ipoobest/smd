@@ -17,7 +17,6 @@
           <v-data-table
             :headers="headers"
             :items="items"
-            :items-per-page="20"
             :search="search"
             @pagination="handlePagination"
           >
@@ -41,25 +40,25 @@
                         <v-row>
                           <v-col cols="12" sm="6" md="6">
                             <v-text-field
-                              v-model="data.ubjectCode"
+                              v-model="datas.subjectCode"
                               label="รหัสวิชา"
                             ></v-text-field>
                           </v-col>
                           <v-col cols="12" sm="6" md="6">
                             <v-text-field
-                              v-model="data.subjectName"
+                              v-model="datas.subjectName"
                               label="ชื่อวิชา"
                             ></v-text-field>
                           </v-col>
                           <v-col cols="12" sm="6" md="4">
                             <v-text-field
-                              v-model="data.credit"
+                              v-model="datas.credit"
                               label="หน่วยกิต"
                             ></v-text-field>
                           </v-col>
                           <v-col cols="12" sm="6" md="4">
                             <v-text-field
-                              v-model="data.hour"
+                              v-model="datas.hour"
                               label="จำนวนชั่วโมงที่สอน"
                             ></v-text-field>
                           </v-col>
@@ -80,6 +79,17 @@
                 </v-dialog>
               </v-toolbar>
             </template>
+            <template v-slot:item.actions="{ item }">
+              <v-icon small class="mr-2" @click="editItem(item)">
+                mdi-pencil
+              </v-icon>
+              <v-icon small @click="deleteItem(item)">
+                mdi-delete
+              </v-icon>
+            </template>
+            <template v-slot:no-data>
+              <v-btn color="primary" @click="initialize">Reset</v-btn>
+            </template>
           </v-data-table>
         </v-card>
       </v-col>
@@ -88,7 +98,7 @@
 </template>
 
 <script>
-import * as SubjectApi from '@/utils/students'
+import * as SubjectApi from '@/utils/subjects'
 export default {
   data() {
     return {
@@ -99,12 +109,13 @@ export default {
         { text: 'ชื่อวิชา', value: 'subjectName' },
         { text: 'หน่วยกิต', value: 'credit' },
         { text: 'จำนวนชั่วโมงที่สอน', value: 'hour' },
-        { text: 'อาจารย์ประจำวิชา', value: 'teatherId' }
+        { text: 'อาจารย์ประจำวิชา', value: 'teatherId' },
+        { text: 'Actions', value: 'actions', sortable: false }
       ],
       items: [],
       search: ``,
       title: `วิชา`,
-      data: {
+      datas: {
         subjectCode: '',
         subjectName: '',
         credit: '',
@@ -113,16 +124,21 @@ export default {
       }
     }
   },
+  computed: {
+    formTitle() {
+      return this.editedIndex === -1 ? 'สร้างวิชา' : 'แก้ไขวิชา'
+    }
+  },
   watch: {
     dialog(val) {
       val || this.close()
     }
   },
   mounted() {
-    this.getDataFromApi().then((result) => (this.items = result))
+    this.getdataFromApi().then((result) => (this.items = result))
   },
   methods: {
-    async getDataFromApi(limit = 50, skip = 0) {
+    async getdataFromApi(limit = 50, skip = 0) {
       const response = await SubjectApi.get()
       // this.items = response
       console.log('subject', response)
@@ -133,6 +149,7 @@ export default {
       console.log('createSubject ', response)
     },
     async updateSubject(data) {
+      console.log('data put subjest ', data)
       const response = await SubjectApi.update(data)
       console.log('updateSubject ', response)
     },
@@ -142,7 +159,7 @@ export default {
     },
     async handlePagination(e) {
       if (e.page === e.pageCount) {
-        const result = await this.getDataFromApi(50, e.itemsLength)
+        const result = await this.getdataFromApi(50, e.itemsLength)
 
         if (result) {
           this.items = [...this.items, ...result]
@@ -162,7 +179,7 @@ export default {
     deleteItem(item) {
       const index = this.items.indexOf(item)
       confirm('ยืนยีนการลบบัญชีผู้ใช้') &&
-        this.deteleTeacher(item.objectId) &&
+        this.deleteSubject(item.objectId) &&
         this.items.splice(index, 1)
     },
     close() {
@@ -172,6 +189,25 @@ export default {
         this.editedItem = Object.assign({}, this.defaultItem)
         this.editedIndex = -1
       }, 300)
+    },
+    save() {
+      if (this.editedIndex > -1) {
+        Object.assign(this.items[this.editedIndex], this.datas)
+        console.log('put xx ', this.datas)
+        const editdatas = {
+          objectId: this.datas.objectId,
+          subjectCode: this.datas.subjectCode,
+          subjectName: this.datas.subjectName,
+          credit: this.datas.credit,
+          hour: this.datas.hour,
+          teatherId: this.datas.teatherId
+        }
+        this.updateSubject(editdatas)
+      } else {
+        this.items.push(this.datas)
+        this.createSubject(this.datas)
+      }
+      this.close()
     }
   }
 }
