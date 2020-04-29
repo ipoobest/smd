@@ -58,6 +58,9 @@ module.exports = {
    */
   auth: {
     strategies: {
+      redirect: {
+        login: '/login'
+      },
       local: {
         endpoints: {
           login: {
@@ -67,15 +70,13 @@ module.exports = {
           },
           logout: {
             url: 'http://27.254.156.3:1337/parse/logout',
-            method: 'post'
+            method: 'delete'
           },
-          user: {
-            url: 'http://27.254.156.3:1337/parse/users/me',
-            method: 'get'
-          }
-        }
+          user: false
+        },
+        tokenName: 'X-Parse-Session-Token',
         // tokenRequired: true,
-        // tokenType: 'bearer'
+        tokenType: 'r'
         // autoFetchUser: true
       }
     }

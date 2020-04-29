@@ -17,6 +17,7 @@ export function create(data) {
 export function update(data) {
   const url = `${process.env.parseUrl}/users/${data.objectId}`
   console.log('urlsss ', url)
+  console.log('dataaa s ', data)
   return request('put', url, data)
 }
 

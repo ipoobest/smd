@@ -120,6 +120,7 @@
 <script>
 import * as TeachersApi from '@/utils/teachers'
 export default {
+  middleware: 'auth',
   data() {
     return {
       dialog: false,
@@ -164,8 +165,9 @@ export default {
       console.log('res ', response.data.results)
       this.items = response.data.results
     },
-    async updateTeacher(item) {
-      const response = await TeachersApi.update(item)
+    async updateTeacher(data) {
+      console.log('data update ', data)
+      const response = await TeachersApi.update(data)
       console.log('res ', response)
     },
     async handlePagination(e) {
@@ -186,10 +188,18 @@ export default {
       })
     },
     editItem(item) {
-      console.log('item id ', item.objectId)
-      // this.editedIndex = this.desserts.indexOf(item)
+      console.log('item id ', item)
+      this.editedIndex = this.desserts.indexOf(item)
       this.editedItem = Object.assign({}, item)
-      this.updateTeacher(item)
+      const editData = {
+        objectId: item.objectId,
+        teacherId: item.teacherId,
+        teacherPosition: item.teacherPosition,
+        title: item.title,
+        firstName: item.firstName,
+        lastName: item.lastName
+      }
+      this.updateTeacher(editData)
       this.dialog = true
     },
     deleteItem(item) {

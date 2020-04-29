@@ -49,8 +49,7 @@
 </template>
 
 <script>
-import * as LoginApi from '@/utils/login'
-// import axios from 'axios'
+import * as LoginsApi from '@/utils/login'
 export default {
   data() {
     return {
@@ -63,17 +62,20 @@ export default {
   layout: 'blank',
   methods: {
     async handleLogin() {
-      console.log('xxx')
+      console.log('xlikx')
       const data = {
         username: this.username,
         password: this.password
       }
-      const response = await LoginApi.login(data)
+      // const headers = {
+      //   'X-Parse-Application-Id': '37151b935e618517d2467aaa4e10f8ed'
+      // }
+      const response = await LoginsApi.login(data)
+      console.log('response ', response)
       if (response.data.sessionToken != null) {
-        console.log('session ', response.data.sessionToken)
-        this.setSession(response.data.sessionToken)
-      } else {
-        alert('รหัสผ่านไม่ถูกต้อง')
+        console.log('sss ', response.data)
+        this.$nuxt.$store.commit('setSessionToken', response.data.sessionToken)
+        this.$router.replace({ name: 'index' })
       }
     },
     setSession(data) {
