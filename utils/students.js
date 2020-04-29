@@ -15,7 +15,7 @@ export function edit(data) {
   return request('put', url, data)
 }
 
-export function deleteTeacher(teacherId) {
+export function deleteStudent(studentId) {
   const url = `${process.env.parseUrl}/users`
-  return request('delete', url, teacherId)
+  return request('delete', url, studentId)
 }
