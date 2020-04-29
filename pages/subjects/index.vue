@@ -88,11 +88,12 @@
 </template>
 
 <script>
-import * as StudentsApi from '@/utils/students'
+import * as SubjectApi from '@/utils/students'
 export default {
   data() {
     return {
       dialog: false,
+      editedIndex: -1,
       headers: [
         { text: 'รหัสวิชา', value: 'subjectCode' },
         { text: 'ชื่อวิชา', value: 'subjectName' },
@@ -122,9 +123,22 @@ export default {
   },
   methods: {
     async getDataFromApi(limit = 50, skip = 0) {
-      const response = await StudentsApi.get()
+      const response = await SubjectApi.get()
       // this.items = response
-      console.log('student', response)
+      console.log('subject', response)
+      this.items = response.data.results
+    },
+    async createSubject(data) {
+      const response = await SubjectApi.create(data)
+      console.log('createSubject ', response)
+    },
+    async updateSubject(data) {
+      const response = await SubjectApi.update(data)
+      console.log('updateSubject ', response)
+    },
+    async deleteSubject(data) {
+      const response = await SubjectApi.deleteSubject(data)
+      console.log('deleteSubject ', response)
     },
     async handlePagination(e) {
       if (e.page === e.pageCount) {
@@ -135,11 +149,29 @@ export default {
         }
       }
     },
-    close() {
-      console.log('close')
+    initialize() {
+      console.log('initialize')
     },
-    save() {
-      console.log('close')
+    editItem(item) {
+      console.log('item id ', item)
+      this.editedIndex = this.items.indexOf(item)
+      this.editedItem = Object.assign({}, item)
+
+      this.dialog = true
+    },
+    deleteItem(item) {
+      const index = this.items.indexOf(item)
+      confirm('ยืนยีนการลบบัญชีผู้ใช้') &&
+        this.deteleTeacher(item.objectId) &&
+        this.items.splice(index, 1)
+    },
+    close() {
+      console.log('closd')
+      this.dialog = false
+      setTimeout(() => {
+        this.editedItem = Object.assign({}, this.defaultItem)
+        this.editedIndex = -1
+      }, 300)
     }
   }
 }
