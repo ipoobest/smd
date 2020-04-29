@@ -120,7 +120,6 @@
 <script>
 import * as TeachersApi from '@/utils/teachers'
 export default {
-  middleware: 'auth',
   data() {
     return {
       dialog: false,
@@ -189,22 +188,14 @@ export default {
     },
     editItem(item) {
       console.log('item id ', item)
-      this.editedIndex = this.desserts.indexOf(item)
+      this.editedIndex = this.items.indexOf(item)
       this.editedItem = Object.assign({}, item)
-      // const editData = {
-      //   objectId: item.objectId,
-      //   teacherId: item.teacherId,
-      //   teacherPosition: item.teacherPosition,
-      //   title: item.title,
-      //   firstName: item.firstName,
-      //   lastName: item.lastName
-      // }
-      // this.updateTeacher(editData)
+
       this.dialog = true
     },
     deleteItem(item) {
-      const index = this.desserts.indexOf(item)
-      confirm('ยืนยีนการลบบัญชีผู้ใช้') && this.desserts.splice(index, 1)
+      const index = this.items.indexOf(item)
+      confirm('ยืนยีนการลบบัญชีผู้ใช้') && this.items.splice(index, 1)
     },
     close() {
       console.log('closd')
@@ -215,7 +206,21 @@ export default {
       }, 300)
     },
     save() {
-      console.log('save')
+      if (this.editedIndex > -1) {
+        Object.assign(this.items[this.editedIndex], this.editedItem)
+        console.log('put xx ', this.editedItem)
+        const editData = {
+          objectId: this.editedItem.objectId,
+          teacherId: this.editedItem.teacherId,
+          teacherPosition: this.editedItem.teacherPosition,
+          title: this.editedItem.title,
+          firstName: this.editedItem.firstName,
+          lastName: this.editedItem.lastName
+        }
+        this.updateTeacher(editData)
+      } else {
+        this.items.push(this.editedItem)
+      }
       this.close()
     }
   }
