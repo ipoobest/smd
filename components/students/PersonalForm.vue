@@ -1,5 +1,6 @@
 <template>
   <v-card-text>
+    <h3>ข้อมูลส่วนตัว</h3>
     <v-row>
       <v-col cols="6">
         <v-row>
@@ -30,7 +31,14 @@
       </v-col>
 
       <v-col cols="6">
-        <v-text-field dense outlined label="ชื่อเล่น" />
+        <v-row>
+          <v-col class="pt-0 pb-0" cols="8">
+            <v-text-field dense outlined label="ชื่อเล่น" />
+          </v-col>
+          <v-col class="pt-0 pb-0" cols="4">
+            <v-select dense outlined label="เพศ" />
+          </v-col>
+        </v-row>
         <v-text-field
           dense
           outlined
@@ -86,5 +94,7 @@
 </template>
 
 <script>
-export default {}
+export default {
+  name: 'PersonalFrom'
+}
 </script>
