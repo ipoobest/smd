@@ -109,7 +109,6 @@ export default {
         { text: 'ชื่อวิชา', value: 'subjectName' },
         { text: 'หน่วยกิต', value: 'credit' },
         { text: 'จำนวนชั่วโมงที่สอน', value: 'hour' },
-        { text: 'อาจารย์ประจำวิชา', value: 'teatherId' },
         { text: 'Actions', value: 'actions', sortable: false }
       ],
       items: [],
@@ -177,9 +176,8 @@ export default {
     },
     deleteItem(item) {
       const index = this.items.indexOf(item)
-      confirm('ยืนยีนการลบบัญชีผู้ใช้') &&
-        this.deleteSubject(item.objectId) &&
-        this.items.splice(index, 1)
+      confirm('ยืนยีนการลบบัญชีผู้ใช้') && this.deleteSubject(item.objectId)
+      this.items.splice(index, 1)
     },
     close() {
       console.log('closd')
