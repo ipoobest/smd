@@ -6,16 +6,16 @@
           <v-card-title>{{ title }}</v-card-title>
           <v-tabs fixed-tabs>
             <v-tab>ข้อมูลส่วนตัว</v-tab>
-            <v-tab>ข้อมูลสุขภาพ</v-tab>
             <v-tab>ที่อยู่อาศัย</v-tab>
+            <v-tab>ข้อมูลครอบครัว</v-tab>
             <v-tab>สิทธิการเบิกค่าเล่าเรียน</v-tab>
-            <v-tab>ช้อมูลครอบครัว</v-tab>
+            <v-tab>ข้อมูลสุขภาพ</v-tab>
 
             <v-tab-item><Personal /></v-tab-item>
-            <v-tab-item><Health /></v-tab-item>
             <v-tab-item><Address /></v-tab-item>
-            <v-tab-item><Withdraw /></v-tab-item>
             <v-tab-item><Family /></v-tab-item>
+            <v-tab-item><Withdraw /></v-tab-item>
+            <v-tab-item><Health /></v-tab-item>
           </v-tabs>
         </v-card>
       </v-col>

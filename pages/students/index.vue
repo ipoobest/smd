@@ -57,10 +57,11 @@ export default {
     return {
       dialog: false,
       headers: [
-        { text: 'หมายเลขประจำตัวนักเรียน', value: '' },
+        { text: 'รหัสประจำตัว', value: '' },
         { text: 'ชื่อ', value: '' },
         { text: 'นามสกุล', value: '' },
-        { text: 'Actions', value: '', sortable: false }
+        { text: 'หลักสูตร', value: '' },
+        { text: 'ระดับชั้น', value: '' }
       ],
       items: [],
       search: ``,

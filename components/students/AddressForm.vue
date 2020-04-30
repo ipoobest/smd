@@ -24,7 +24,6 @@
             ></v-textarea>
             <v-text-field dense outlined label="หมายเลขโทรศัพท์" />
           </v-col>
-          <WithdrawForm></WithdrawForm>
         </v-row>
       </v-col>
 
@@ -59,13 +58,9 @@
 </template>
 
 <script>
-import WithdrawForm from '@/components/students/WithdrawForm'
-
 export default {
   name: 'AddressForm',
-  components: {
-    WithdrawForm
-  }
+  components: {}
 }
 </script>
 
