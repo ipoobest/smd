@@ -203,8 +203,8 @@ export default {
         }
         this.updateSubject(editdatas)
       } else {
-        this.items.push(this.datas)
         this.createSubject(this.datas)
+        this.items.push(this.datas)
       }
       this.close()
     }

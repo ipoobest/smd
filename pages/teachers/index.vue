@@ -230,8 +230,8 @@ export default {
         }
         this.updateTeacher(editData)
       } else {
-        this.items.push(this.editedItem)
         this.createTeacher(this.editedItem)
+        this.items.push(this.editedItem)
       }
       this.close()
     }
