@@ -9,13 +9,38 @@
             <v-select dense outlined label="ประเภท" />
           </v-col>
         </v-row>
+        <v-row justify="end">
+          <div class="mb-5 mr-7">
+            <v-btn color="orange" depressed large @click="back">ย้อนกลับ</v-btn>
+            <v-btn color="primary" depressed large @click="save">ถัดไป</v-btn>
+          </div>
+        </v-row>
       </v-col>
     </v-row>
   </v-card-text>
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      tab: '',
+      WithdrawData: {}
+    }
+  },
+  methods: {
+    back() {
+      this.tab = 'familyData'
+      console.log('black', this.tab)
+      this.$emit('saveWithdraw', this.WithdrawData, this.tab)
+    },
+    save() {
+      console.log('go')
+      this.tab = 'healthData'
+      this.$emit('saveWithdraw', this.WithdrawData, this.tab)
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped></style>

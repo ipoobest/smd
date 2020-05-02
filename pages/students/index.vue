@@ -29,7 +29,6 @@
                   <v-btn color="success" dark class="mb-2" to="/students/form"
                     >เพิ่ม</v-btn
                   >
-                  <span class="headline">{{ formTitle }}</span>
                 </v-card-title>
               </v-toolbar>
             </template>

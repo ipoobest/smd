@@ -2,6 +2,13 @@
   <v-card-text>
     <h3>ข้อมูลส่วนตัว</h3>
     <v-row>
+      <v-col cols="12">
+        <v-row justify="center">
+          <v-col class="pt-0 pb-0" cols="2">
+            <!-- <UploadProfile></UploadProfile> -->
+          </v-col>
+        </v-row>
+      </v-col>
       <v-col cols="6">
         <v-row>
           <v-col class="pt-0 pb-0" cols="2">
@@ -89,12 +96,55 @@
           </v-col>
         </v-row>
       </v-col>
+
+      <v-row justify="end">
+        <div class="mb-5 mr-7">
+          <v-btn color="primary" depressed large @click="save">ถัดไป</v-btn>
+        </div>
+      </v-row>
     </v-row>
   </v-card-text>
 </template>
 
 <script>
+// import UploadProfile from './UploadProfile'
 export default {
-  name: 'PersonalFrom'
+  name: 'PersonalFrom',
+  components: {
+    // UploadProfile
+  },
+  data() {
+    return {
+      tab: 'addressData',
+      personalData: {
+        title: '',
+        firstName: '',
+        lastName: '',
+        nickName: '',
+        sex: '',
+        studentId: '',
+        course: '',
+        level: '',
+        from: '',
+        titleEng: '',
+        firstNameEng: '',
+        lastNameEng: '',
+        idCard: '',
+        ageYear: '',
+        ageMount: '',
+        nation: '',
+        race: '',
+        region: '',
+        birth: '',
+        birthPlace: '',
+        birthProvince: ''
+      }
+    }
+  },
+  methods: {
+    save() {
+      this.$emit('savePersonal', this.personalData, this.tab)
+    }
+  }
 }
 </script>

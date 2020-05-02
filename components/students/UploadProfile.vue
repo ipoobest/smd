@@ -8,7 +8,7 @@
           size="150px"
           class="grey lighten-3 mb-3"
         >
-          <span>Click to add avatar</span>
+          <span>คลิกเพื่ออัพโหลดรูปนักเรียน</span>
         </v-avatar>
         <v-avatar v-else v-ripple size="150px" class="mb-3">
           <img :src="avatar.imageURL" alt="avatar" />
@@ -18,7 +18,7 @@
     <v-slide-x-transition>
       <div v-if="avatar && saved == false">
         <v-btn class="primary" :loading="saving" @click="uploadImage"
-          >Save Avatar</v-btn
+          >บันทึก</v-btn
         >
       </div>
     </v-slide-x-transition>

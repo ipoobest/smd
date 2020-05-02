@@ -52,6 +52,12 @@
             <v-text-field dense outlined label="หมายเลขโทรศัพท์" />
           </v-col>
         </v-row>
+        <v-row justify="end">
+          <div class="mb-5 mr-7">
+            <v-btn color="orange" depressed large @click="back">ย้อนกลับ</v-btn>
+            <v-btn color="primary" depressed large @click="save">ถัดไป</v-btn>
+          </div>
+        </v-row>
       </v-col>
     </v-row>
   </v-card-text>
@@ -60,7 +66,25 @@
 <script>
 export default {
   name: 'AddressForm',
-  components: {}
+  components: {},
+  data() {
+    return {
+      tab: '',
+      AdderessData: {}
+    }
+  },
+  methods: {
+    back() {
+      this.tab = 'personalData'
+      console.log('black')
+      this.$emit('saveAddress', this.AdderessData, this.tab)
+    },
+    save() {
+      console.log('go')
+      this.tab = 'familyData'
+      this.$emit('saveAddress', this.AdderessData, this.tab)
+    }
+  }
 }
 </script>
 

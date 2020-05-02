@@ -86,6 +86,11 @@ export default {
           to: `/users`
         },
         {
+          icon: `mdi-account`,
+          title: `classes`,
+          to: `/classes`
+        },
+        {
           icon: `mdi-account-tie`,
           title: `ครู`,
           to: `/teachers`

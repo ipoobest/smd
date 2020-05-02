@@ -103,6 +103,12 @@
             <v-text-field dense outlined label="รายได้เฉลี่ย/เดือน" />
           </v-col>
         </v-row>
+        <v-row justify="end">
+          <div class="mb-5 mr-7">
+            <v-btn color="orange" depressed large @click="back">ย้อนกลับ</v-btn>
+            <v-btn color="primary" depressed large @click="save">ถัดไป</v-btn>
+          </div>
+        </v-row>
       </v-col>
     </v-row>
   </v-card-text>
@@ -110,7 +116,25 @@
 
 <script>
 export default {
-  name: 'AddressForm'
+  name: 'FamilyForm',
+  data() {
+    return {
+      tab: '',
+      FamilyData: {}
+    }
+  },
+  methods: {
+    back() {
+      this.tab = 'addressData'
+      console.log('black', this.tab)
+      this.$emit('saveFamily', this.FamilyData, this.tab)
+    },
+    save() {
+      console.log('go')
+      this.tab = 'withdrawData'
+      this.$emit('saveFamily', this.FamilyData, this.tab)
+    }
+  }
 }
 </script>
 

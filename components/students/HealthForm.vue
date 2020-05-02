@@ -42,12 +42,35 @@
         </v-row>
       </v-col>
     </v-row>
+    <v-row justify="end">
+      <div class="mb-5 mr-7">
+        <v-btn color="orange" depressed large @click="back">ย้อนกลับ</v-btn>
+        <v-btn color="success" depressed large @click="save">สร้าง</v-btn>
+      </div>
+    </v-row>
   </v-card-text>
 </template>
 
 <script>
 export default {
-  name: 'AddressForm'
+  name: 'AddressForm',
+  data() {
+    return {
+      healthData: {}
+    }
+  },
+  methods: {
+    back() {
+      this.tab = 'withdrawData'
+      console.log('black', this.tab)
+      this.$emit('saveHealth', this.healthData, this.tab)
+    },
+    save() {
+      console.log('go')
+      // this.tab = 'healthData')
+      // this.$emit('saveHealth', this.healthData, this.tab)
+    }
+  }
 }
 </script>
 

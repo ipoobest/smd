@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <v-row justify-lg="center"><h1>SMD</h1></v-row>
 </template>
 
 <script>
