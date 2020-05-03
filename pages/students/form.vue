@@ -54,7 +54,7 @@ export default {
     return {
       tab: '',
       title: 'ข้อมูลส่วนตัวนักเรียน',
-      PxForm: {
+      personal: {
         title: '',
         firstName: '',
         lastName: '',
@@ -76,15 +76,29 @@ export default {
         birth: '',
         birthPlace: '',
         birthProvince: ''
-      }
+      },
+      family: {},
+      address: {},
+      withdraw: {},
+      health: {}
     }
   },
   mounted() {},
   methods: {
+    saveData() {
+      const data = [
+        this.personal,
+        this.family,
+        this.address,
+        this.withdraw,
+        this.health
+      ]
+      console.log('data xxx', data)
+    },
     handlePersonalData(PersonalForm, tab) {
-      this.PxForm = PersonalForm
+      this.personal = PersonalForm
       this.changeTab(tab)
-      console.log('main ', this.PxForm)
+      console.log('main ', this.personal)
     },
     handleAddressData(AdderessData, tab) {
       console.log('tab address ', tab)

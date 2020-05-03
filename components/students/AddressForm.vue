@@ -70,7 +70,12 @@ export default {
   data() {
     return {
       tab: '',
-      AdderessData: {}
+      AdderessData: {
+        type: '',
+        domicile: '',
+        address: '',
+        tel: ''
+      }
     }
   },
   methods: {
