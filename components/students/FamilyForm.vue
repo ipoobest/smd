@@ -6,7 +6,7 @@
         <v-row>
           <v-col class="pt-0 pb-0" cols="5">
             <v-text-field
-              v-model="father.name"
+              v-model="FamilyData.father.fname"
               dense
               outlined
               label="ชื่อ (บิดา)"
@@ -14,20 +14,25 @@
           </v-col>
           <v-col class="pt-0 pb-0" cols="5">
             <v-text-field
-              v-model="father.lastName"
+              v-model="FamilyData.father.fsername"
               dense
               outlined
               label="นามสกุล (บิดา)"
             />
           </v-col>
           <v-col class="pt-0 pb-0" cols="2">
-            <v-text-field v-model="father.age" dense outlined label="อายุ" />
+            <v-text-field
+              v-model="FamilyData.father.fage"
+              dense
+              outlined
+              label="อายุ"
+            />
           </v-col>
         </v-row>
         <v-row>
           <v-col class="pt-0 pb-0" cols="6">
             <v-select
-              v-model="homereciv"
+              v-model="FamilyData.mstatus"
               dense
               outlined
               label="สถานะภาพ (*หากเสียชีวิตแล้วไม่ต้องตอบเรื่องอาชีพ)"
@@ -35,7 +40,7 @@
           </v-col>
           <v-col class="pt-0 pb-0" cols="6">
             <v-select
-              v-model="father.education"
+              v-model="FamilyData.father.feducation"
               dense
               outlined
               label="คุณวุติทางการศึกษา"
@@ -44,19 +49,40 @@
         </v-row>
         <v-row>
           <v-col class="pt-0 pb-0" cols="7">
-            <v-select v-model="father.job" dense outlined label="อาชีพ" />
+            <v-select
+              v-model="FamilyData.father.fwork"
+              dense
+              outlined
+              label="ประเภทของงาน"
+            />
           </v-col>
           <v-col class="pt-0 pb-0" cols="5">
             <v-text-field
-              v-model="father.position"
+              v-model="FamilyData.father.fcareer"
+              dense
+              outlined
+              label="อาชีพ"
+            />
+          </v-col>
+          <v-col class="pt-0 pb-0" cols="6">
+            <v-text-field
+              v-model="FamilyData.father.fpost"
               dense
               outlined
               label="ตำแหน่ง"
             />
           </v-col>
+          <v-col class="pt-0 pb-0" cols="6">
+            <v-text-field
+              v-model="FamilyData.mather.fbeloin"
+              dense
+              outlined
+              label="สังกัด"
+            />
+          </v-col>
           <v-col class="pt-0 pb-0" cols="12">
             <v-textarea
-              v-model="father.officeAddress.addressData"
+              v-model="FamilyData.father.officeAddress.fatwork"
               label="สถานที่ทำงานของบิดา"
               auto-grow
               outlined
@@ -66,7 +92,7 @@
           ></v-col>
           <v-col class="pt-0 pb-0" cols="6">
             <v-text-field
-              v-model="father.officeAddress.tel"
+              v-model="FamilyData.father.officeAddress.ftell"
               dense
               outlined
               label="เบอร์โทรศัพท์ที่ทำงาน"
@@ -74,7 +100,7 @@
           </v-col>
           <v-col class="pt-0 pb-0" cols="6">
             <v-text-field
-              v-model="father.telephone"
+              v-model="FamilyData.father.fphone"
               dense
               outlined
               label="เบอร์โทรศัพท์มือถือ"
@@ -82,7 +108,7 @@
           </v-col>
           <v-col class="pt-0 pb-0" cols="6">
             <v-text-field
-              v-model="father.monthlyIncome"
+              v-model="FamilyData.father.fsalary"
               dense
               outlined
               label="รายได้เฉลี่ย/เดือน"
@@ -94,7 +120,7 @@
         <v-row>
           <v-col class="pt-0 pb-0" cols="5">
             <v-text-field
-              v-model="mather.name"
+              v-model="FamilyData.mather.mname"
               dense
               outlined
               label="ชื่อ (มารดา)"
@@ -102,20 +128,25 @@
           </v-col>
           <v-col class="pt-0 pb-0" cols="5">
             <v-text-field
-              v-model="mather.lastName"
+              v-model="FamilyData.mather.msername"
               dense
               outlined
               label="นามสกุล (มารดา)"
             />
           </v-col>
           <v-col class="pt-0 pb-0" cols="2">
-            <v-text-field v-model="mather.age" dense outlined label="อายุ" />
+            <v-text-field
+              v-model="FamilyData.mather.mage"
+              dense
+              outlined
+              label="อายุ"
+            />
           </v-col>
         </v-row>
         <v-row>
           <v-col class="pt-0 pb-0" cols="6">
             <v-select
-              v-model="mather.education"
+              v-model="FamilyData.mather.meducation"
               dense
               outlined
               label="คุณวุติทางการศึกษา"
@@ -124,19 +155,40 @@
         </v-row>
         <v-row>
           <v-col class="pt-0 pb-0" cols="7">
-            <v-select v-model="mather.job" dense outlined label="อาชีพ" />
+            <v-select
+              v-model="FamilyData.mather.mwork"
+              dense
+              outlined
+              label="ประเภทของงาน"
+            />
           </v-col>
           <v-col class="pt-0 pb-0" cols="5">
             <v-text-field
-              v-model="mather.position"
+              v-model="FamilyData.father.mcareer"
+              dense
+              outlined
+              label="อาชีพ"
+            />
+          </v-col>
+          <v-col class="pt-0 pb-0" cols="6">
+            <v-text-field
+              v-model="FamilyData.mather.mpost"
               dense
               outlined
               label="ตำแหน่ง"
             />
           </v-col>
+          <v-col class="pt-0 pb-0" cols="6">
+            <v-text-field
+              v-model="FamilyData.mather.mbeloin"
+              dense
+              outlined
+              label="สังกัด"
+            />
+          </v-col>
           <v-col class="pt-0 pb-0" cols="12">
             <v-textarea
-              v-model="mather.officeAddress.addressData"
+              v-model="FamilyData.mather.officeAddress.matwork"
               label="สถานที่ทำงานของมารดา"
               auto-grow
               outlined
@@ -146,7 +198,7 @@
           ></v-col>
           <v-col class="pt-0 pb-0" cols="6">
             <v-text-field
-              v-model="mather.officeAddress.tel"
+              v-model="FamilyData.mather.officeAddress.mtell"
               dense
               outlined
               label="เบอร์โทรศัพท์ที่ทำงาน"
@@ -154,7 +206,7 @@
           </v-col>
           <v-col class="pt-0 pb-0" cols="6">
             <v-text-field
-              v-model="mather.telephone"
+              v-model="FamilyData.mather.mphone"
               dense
               outlined
               label="เบอร์โทรศัพท์มือถือ"
@@ -162,20 +214,92 @@
           </v-col>
           <v-col class="pt-0 pb-0" cols="6">
             <v-text-field
-              v-model="mather.monthlyIncome"
+              v-model="FamilyData.mather.msalary"
               dense
               outlined
               label="รายได้เฉลี่ย/เดือน"
             />
           </v-col>
         </v-row>
-        <v-row justify="end">
-          <div class="mb-5 mr-7">
-            <v-btn color="orange" depressed large @click="back">ย้อนกลับ</v-btn>
-            <v-btn color="primary" depressed large @click="save">ถัดไป</v-btn>
-          </div>
+      </v-col>
+      <v-col cols="6">
+        <v-row>
+          <v-col class="pt-0 pb-0" cols="12">
+            <v-text-field
+              v-model="FamilyData.sibling"
+              dense
+              outlined
+              label="พี่น้องร่วมบิดา/มารดาที่เรียนโรงเรียนสาธิต(มอดินแดง)"
+            />
+          </v-col>
+          <v-col class="pt-0 pb-0" cols="8">
+            <v-text-field
+              v-model="FamilyData.sibling1"
+              dense
+              outlined
+              label="ประกอบกด้วย 1"
+            />
+            <v-text-field
+              v-model="FamilyData.sibling2"
+              dense
+              outlined
+              label="ประกอบกด้วย 2"
+            />
+            <v-text-field
+              v-model="FamilyData.sibling3"
+              dense
+              outlined
+              label="ประกอบกด้วย 2"
+            />
+          </v-col>
+          <v-col class="pt-0 pb-0" cols="4">
+            <v-text-field
+              v-model="FamilyData.sbclass1"
+              dense
+              outlined
+              label="จำนวน"
+            />
+            <v-text-field
+              v-model="FamilyData.sbclass2"
+              dense
+              outlined
+              label="จำนวน"
+            />
+            <v-text-field
+              v-model="FamilyData.sbclass3"
+              dense
+              outlined
+              label="จำนวน"
+            />
+          </v-col>
+          <v-col class="pt-0 pb-0" cols="12">
+            <v-text-field
+              v-model="FamilyData.contact"
+              dense
+              outlined
+              label="กรณีฉุกเฉินติดต่อ"
+            />
+            <v-text-field
+              v-model="FamilyData.related"
+              dense
+              outlined
+              label="เกี่ยวข้องเป็น"
+            />
+            <v-text-field
+              v-model="FamilyData.ctell"
+              dense
+              outlined
+              label="หมายเลขโทรศัพท์"
+            />
+          </v-col>
         </v-row>
       </v-col>
+    </v-row>
+    <v-row justify="end">
+      <div class="mb-5 mr-7">
+        <v-btn color="orange" depressed large @click="back">ย้อนกลับ</v-btn>
+        <v-btn color="primary" depressed large @click="save">ถัดไป</v-btn>
+      </div>
     </v-row>
   </v-card-text>
 </template>
@@ -188,35 +312,49 @@ export default {
       tab: '',
       FamilyData: {
         father: {
-          name: '',
-          lastName: '',
-          age: '',
-          education: '',
-          job: '',
-          position: '',
+          fname: '',
+          fsername: '',
+          fage: '',
+          feducation: '',
+          fwork: '',
+          fcareer: '',
+          fpost: '',
+          fbeloin: '',
           officeAddress: {
-            addressData: '',
-            tel: ''
+            fatwork: '',
+            ftell: ''
           },
-          telephone: '',
-          monthlyIncome: ''
-        }
-      },
-      mather: {
-        name: '',
-        lastName: '',
-        age: '',
-        education: '',
-        job: '',
-        position: '',
-        officeAddress: {
-          addressData: '',
-          tel: ''
+          fphone: '',
+          fsalary: ''
         },
-        telephone: '',
-        monthlyIncome: ''
-      },
-      homereciv: ''
+        mather: {
+          mname: '',
+          msername: '',
+          mage: '',
+          meducation: '',
+          mwork: '',
+          mcareer: '',
+          mpost: '',
+          mbeloin: '',
+          officeAddress: {
+            matwork: '',
+            mtell: ''
+          },
+          mphone: '',
+          msalary: ''
+        },
+        mstatus: '',
+        sibling: '',
+        sibling1: '',
+        sibling2: '',
+        sibling3: '',
+        sbclass1: '',
+        sbclass2: '',
+        sbclass3: '',
+        contact: '',
+        related: '',
+        ctell: ''
+      }
     }
   },
   methods: {

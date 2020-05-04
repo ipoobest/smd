@@ -55,32 +55,80 @@ export default {
       tab: '',
       title: 'ข้อมูลส่วนตัวนักเรียน',
       personal: {
-        title: '',
-        firstName: '',
-        lastName: '',
+        tth: '',
+        namet: '',
+        snamet: '',
         nickName: '',
         sex: '',
-        studentId: '',
+        idstd: '',
         course: '',
-        level: '',
-        from: '',
-        titleEng: '',
-        firstNameEng: '',
-        lastNameEng: '',
+        class: '',
+        study: '',
+        ten: '',
+        namee: '',
+        snamee: '',
         idCard: '',
-        ageYear: '',
-        ageMount: '',
+        stage: '',
+        stmonth: '',
         nation: '',
         race: '',
-        region: '',
-        birth: '',
-        birthPlace: '',
-        birthProvince: ''
+        religian: '',
+        bday: '',
+        badd: '',
+        bprovince: ''
       },
-      family: {},
-      address: {},
-      withdraw: {},
-      health: {}
+      family: {
+        father: {
+          fname: '',
+          fsername: '',
+          fage: '',
+          feducation: '',
+          fwork: '',
+          fcareer: '',
+          fpost: '',
+          fbeloin: '',
+          officeAddress: {
+            fatwork: '',
+            ftell: ''
+          },
+          fphone: '',
+          fsalary: ''
+        },
+        mather: {
+          mname: '',
+          msername: '',
+          mage: '',
+          meducation: '',
+          mwork: '',
+          mcareer: '',
+          mpost: '',
+          mbeloin: '',
+          officeAddress: {
+            matwork: '',
+            mtell: ''
+          },
+          mphone: '',
+          msalary: ''
+        }
+      },
+      address: {
+        residential: '',
+        domicile: '',
+        dormitory: '',
+        addres: '',
+        dorm: '',
+        stell: ''
+      },
+      withdraw: {
+        privileage: '',
+        welfare: ''
+      },
+      health: {
+        blood: '',
+        disease: '',
+        treatment: '',
+        healthpb: ''
+      }
     }
   },
   mounted() {},
@@ -101,10 +149,13 @@ export default {
       console.log('main ', this.personal)
     },
     handleAddressData(AdderessData, tab) {
-      console.log('tab address ', tab)
+      this.address = AdderessData
+      console.log('tab address ', this.address)
       this.changeTab(tab)
     },
     handleFamilyData(FamilyData, tab) {
+      this.family = FamilyData
+      console.log('tab FamilyData ', this.family)
       this.tab = tab
       this.changeTab(this.tab)
     },
@@ -112,6 +163,7 @@ export default {
       this.changeTab(tab)
     },
     handleHealthData(HealthData, tab) {
+      console.log('main handleHealthData ', this.HealthData)
       this.changeTab(tab)
     },
     changeTab(tab) {

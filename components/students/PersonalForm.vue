@@ -5,7 +5,21 @@
       <v-col cols="12">
         <v-row justify="center">
           <v-col class="pt-0 pb-0" cols="2">
-            <!-- <UploadProfile></UploadProfile> -->
+            <UploadProfile v-model="personalData.avatar">
+              <div slot="activator">
+                <v-avatar
+                  v-if="!personalData.avatar"
+                  v-ripple
+                  size="150px"
+                  class="grey lighten-3 mb-3"
+                >
+                  <span>คลิกเพื่ออัพโหลดรูปภาพ</span>
+                </v-avatar>
+                <v-avatar v-else v-ripple size="150px" class="mb-3">
+                  <img :src="personalData.avatar.imageURL" alt="avatar" />
+                </v-avatar>
+              </div>
+            </UploadProfile>
           </v-col>
         </v-row>
       </v-col>
@@ -13,7 +27,7 @@
         <v-row>
           <v-col class="pt-0 pb-0" cols="2">
             <v-select
-              v-model="personalData.title"
+              v-model="personalData.tth"
               :items="itemsTiteThai"
               dense
               outlined
@@ -22,7 +36,7 @@
           </v-col>
           <v-col class="pt-0 pb-0" cols="5">
             <v-text-field
-              v-model="personalData.firstName"
+              v-model="personalData.namet"
               dense
               outlined
               label="ชื่อ (ภาษาไทย)"
@@ -30,7 +44,7 @@
           </v-col>
           <v-col class="pt-0 pb-0" cols="5">
             <v-text-field
-              v-model="personalData.lastName"
+              v-model="personalData.snamet"
               dense
               outlined
               label="นามสกุล (ภาษาไทย)"
@@ -43,7 +57,7 @@
         <v-row>
           <v-col class="pt-0 pb-0" cols="2">
             <v-select
-              v-model="personalData.titleEng"
+              v-model="personalData.ten"
               :items="itemsTiteEng"
               dense
               outlined
@@ -52,7 +66,7 @@
           </v-col>
           <v-col class="pt-0 pb-0" cols="5">
             <v-text-field
-              v-model="personalData.firstNameEng"
+              v-model="personalData.namee"
               dense
               outlined
               label="ชื่อ (ภาษาอังกฤษ)"
@@ -60,7 +74,7 @@
           </v-col>
           <v-col class="pt-0 pb-0" cols="5">
             <v-text-field
-              v-model="personalData.lastNameEng"
+              v-model="personalData.snamee"
               dense
               outlined
               label="นามสกุล (ภาษาอังกฤษ)"
@@ -90,7 +104,7 @@
           </v-col>
         </v-row>
         <v-text-field
-          v-model="personalData.studentId"
+          v-model="personalData.idstd"
           dense
           outlined
           label="รหัสนักเรียน (* รหัสประจำตัวใหม่จากประกาศ 6 หลัก)"
@@ -107,7 +121,7 @@
           </v-col>
           <v-col class="pt-0 pb-0" cols="6">
             <v-text-field
-              v-model="personalData.level"
+              v-model="personalData.class"
               dense
               outlined
               label="ระดับชั้น"
@@ -115,7 +129,7 @@
           </v-col>
         </v-row>
         <v-text-field
-          v-model="personalData.from"
+          v-model="personalData.study"
           dense
           outlined
           label="จบชั้น ป.6 จากโรงเรียน"
@@ -132,7 +146,7 @@
         <v-row>
           <v-col class="pt-0 pb-0" cols="3">
             <v-text-field
-              v-model="personalData.ageYear"
+              v-model="personalData.stage"
               dense
               outlined
               label="อายุ (ปี)"
@@ -140,7 +154,7 @@
           </v-col>
           <v-col class="pt-0 pb-0" cols="3">
             <v-text-field
-              v-model="personalData.ageMount"
+              v-model="personalData.stmonth"
               dense
               outlined
               label="เดือน"
@@ -166,7 +180,7 @@
         <v-row>
           <v-col class="pt-0 pb-0" cols="6">
             <v-text-field
-              v-model="personalData.region"
+              v-model="personalData.religian"
               dense
               outlined
               label="ศาสนา"
@@ -190,7 +204,7 @@
                 ></v-text-field>
               </template>
               <v-date-picker
-                v-model="personalData.birth"
+                v-model="personalData.bday"
                 locale="en-in"
                 no-title
                 @input="fromDateMenu = false"
@@ -202,7 +216,7 @@
         <v-row>
           <v-col class="pt-0 pb-0" cols="6">
             <v-text-field
-              v-model="personalData.birthPlace"
+              v-model="personalData.badd"
               dense
               outlined
               label="สถานที่เกิด"
@@ -210,7 +224,7 @@
           </v-col>
           <v-col class="pt-0 pb-0" cols="6">
             <v-text-field
-              v-model="personalData.birthProvince"
+              v-model="personalData.bprovince"
               dense
               outlined
               label="จังหวัดที่เกิด"
@@ -229,37 +243,40 @@
 </template>
 
 <script>
-// import UploadProfile from './UploadProfile'
+import UploadProfile from './UploadProfile'
 export default {
   name: 'PersonalFrom',
   components: {
-    // UploadProfile
+    UploadProfile
   },
   data() {
     return {
       tab: 'addressData',
       personalData: {
-        title: '',
-        firstName: '',
-        lastName: '',
+        tth: '',
+        namet: '',
+        snamet: '',
         nickName: '',
         sex: '',
-        studentId: '',
+        idstd: '',
         course: '',
-        level: '',
-        from: '',
-        titleEng: '',
-        firstNameEng: '',
-        lastNameEng: '',
+        class: '',
+        study: '',
+        ten: '',
+        namee: '',
+        snamee: '',
         idCard: '',
-        ageYear: '',
-        ageMount: '',
+        stage: '',
+        stmonth: '',
         nation: '',
         race: '',
-        region: '',
-        birth: '',
-        birthPlace: '',
-        birthProvince: ''
+        religian: '',
+        bday: '',
+        badd: '',
+        bprovince: '',
+        avatar: null,
+        saving: false,
+        saved: false
       },
       itemsTiteThai: ['เด็กชาย', 'เด็กหญิง', 'นาย', 'นางสาว'],
       itemsTiteEng: ['Master', 'Miss', 'Mr'],
@@ -273,10 +290,26 @@ export default {
       // format date, apply validations, etc. Example below.
     }
   },
+  watch: {
+    avatar: {
+      handler() {
+        this.saved = false
+      },
+      deep: true
+    }
+  },
   methods: {
+    uploadImage() {
+      this.saving = true
+      setTimeout(() => this.savedAvatar(), 1000)
+    },
+    savedAvatar() {
+      this.saving = false
+      this.saved = true
+    },
     save() {
-      console.log('title ', this.personalData.birth)
-      // this.$emit('savePersonal', this.personalData, this.tab)
+      // console.log('title ', this.personalData.birth)
+      this.$emit('savePersonal', this.personalData, this.tab)
     }
   }
 }

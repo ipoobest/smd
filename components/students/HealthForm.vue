@@ -5,12 +5,18 @@
       <v-col cols="12">
         <v-row>
           <v-col class="pt-0 pb-0" cols="2">
-            <v-select dense outlined label="หมู่เลือด" />
+            <v-text-field
+              v-model="healthData.blood"
+              dense
+              outlined
+              label="หมู่เลือด"
+            />
           </v-col>
         </v-row>
         <v-row>
           <v-col class="pt-0 pb-0" cols="4">
             <v-textarea
+              v-model="healthData.disease"
               dense
               auto-grow
               outlined
@@ -21,6 +27,7 @@
           </v-col>
           <v-col class="pt-0 pb-0" cols="4">
             <v-textarea
+              v-model="healthData.treatment"
               dense
               auto-grow
               outlined
@@ -31,6 +38,7 @@
           </v-col>
           <v-col class="pt-0 pb-0" cols="4">
             <v-textarea
+              v-model="healthData.healthpb"
               dense
               auto-grow
               outlined
@@ -56,9 +64,15 @@ export default {
   name: 'AddressForm',
   data() {
     return {
-      healthData: {}
+      healthData: {
+        blood: '',
+        disease: '',
+        treatment: '',
+        healthpb: ''
+      }
     }
   },
+
   methods: {
     back() {
       this.tab = 'withdrawData'
@@ -67,11 +81,9 @@ export default {
     },
     save() {
       console.log('go')
-      // this.tab = 'healthData')
-      // this.$emit('saveHealth', this.healthData, this.tab)
+      this.tab = 'healthData'
+      this.$emit('saveHealth', this.healthData, this.tab)
     }
   }
 }
 </script>
-
-<style lang="scss" scoped></style>
