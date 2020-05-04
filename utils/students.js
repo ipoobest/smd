@@ -6,7 +6,7 @@ export function get() {
 }
 
 export function create(data) {
-  const url = `${process.env.parseUrl}/classes/students`
+  const url = `${process.env.parseUrl}/classes/Students`
   return request('post', url, data)
 }
 

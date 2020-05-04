@@ -41,6 +41,8 @@ import Health from '@/components/students/HealthForm.vue'
 import Personal from '@/components/students/PersonalForm.vue'
 import Withdraw from '@/components/students/WithdrawForm.vue'
 
+import * as StudentsApi from '@/utils/students'
+
 export default {
   components: {
     Address,
@@ -133,15 +135,18 @@ export default {
   },
   mounted() {},
   methods: {
-    saveData() {
-      const data = [
-        this.personal,
-        this.family,
-        this.address,
-        this.withdraw,
-        this.health
-      ]
+    async saveData() {
+      const data = {
+        psersonal: this.personal,
+        family: this.family,
+        address: this.address,
+        withdraw: this.withdraw,
+        health: this.health
+      }
+
       console.log('data xxx', data)
+      const response = await StudentsApi.create(data)
+      console.log('res ', response)
     },
     handlePersonalData(PersonalForm, tab) {
       this.personal = PersonalForm
@@ -164,7 +169,8 @@ export default {
     },
     handleHealthData(HealthData, tab) {
       console.log('main handleHealthData ', this.HealthData)
-      this.changeTab(tab)
+      // this.changeTab(tab)
+      this.saveData()
     },
     changeTab(tab) {
       this.tab = tab
