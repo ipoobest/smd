@@ -77,7 +77,10 @@ export default {
         religian: '',
         bday: '',
         badd: '',
-        bprovince: ''
+        bprovince: '',
+        profile: {
+          imageURL: ''
+        }
       },
       family: {
         father: {
@@ -157,6 +160,7 @@ export default {
         bday: this.personal.bday,
         badd: this.personal.badd,
         bprovince: this.personal.bprovince,
+        profile: this.personal.profile.imageURL,
         fname: this.family.father.fname,
         fsername: this.family.father.fsername,
         fage: this.family.father.fage,
@@ -193,15 +197,14 @@ export default {
         treatment: this.health.treatment,
         healthpb: this.health.healthpb
       }
-
-      console.log('data xxx', data)
+      console.log('data xxx', data.profile)
       const response = await StudentsApi.create(data)
       console.log('res ', response)
     },
     handlePersonalData(PersonalForm, tab) {
       this.personal = PersonalForm
       this.changeTab(tab)
-      console.log('main ', this.personal)
+      console.log('main ', this.personal.profile.imageURL)
     },
     handleAddressData(AdderessData, tab) {
       this.address = AdderessData
