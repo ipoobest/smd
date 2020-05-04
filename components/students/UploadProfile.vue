@@ -27,10 +27,6 @@
 <script>
 export default {
   name: 'UploadProfile',
-  props: {
-    // Use "value" to enable using v-model
-    value: Object
-  },
   data() {
     return {
       errorDialog: null,

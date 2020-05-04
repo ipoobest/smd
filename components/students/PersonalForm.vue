@@ -5,10 +5,10 @@
       <v-col cols="12">
         <v-row justify="center">
           <v-col class="pt-0 pb-0" cols="2">
-            <UploadProfile v-model="personalData.avatar">
+            <UploadProfile v-model="personalData.profile">
               <div slot="activator">
                 <v-avatar
-                  v-if="!personalData.avatar"
+                  v-if="!personalData.profile"
                   v-ripple
                   size="150px"
                   class="grey lighten-3 mb-3"
@@ -16,7 +16,7 @@
                   <span>คลิกเพื่ออัพโหลดรูปภาพ</span>
                 </v-avatar>
                 <v-avatar v-else v-ripple size="150px" class="mb-3">
-                  <img :src="personalData.avatar.imageURL" alt="avatar" />
+                  <img :src="personalData.profile.imageURL" alt="profile" />
                 </v-avatar>
               </div>
             </UploadProfile>
@@ -274,7 +274,7 @@ export default {
         bday: '',
         badd: '',
         bprovince: '',
-        avatar: null,
+        profile: null,
         saving: false,
         saved: false
       },
