@@ -286,7 +286,7 @@ export default {
   },
   computed: {
     fromDateDisp() {
-      return this.personalData.birth
+      return this.personalData.bday
       // format date, apply validations, etc. Example below.
     }
   },

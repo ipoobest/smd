@@ -116,7 +116,6 @@ export default {
       address: {
         residential: '',
         domicile: '',
-        dormitory: '',
         addres: '',
         dorm: '',
         stell: ''
@@ -137,11 +136,62 @@ export default {
   methods: {
     async saveData() {
       const data = {
-        psersonal: this.personal,
-        family: this.family,
-        address: this.address,
-        withdraw: this.withdraw,
-        health: this.health
+        tth: this.personal.tth,
+        namet: this.personal.namet,
+        snamet: this.personal.snamet,
+        nickName: this.personal.nickName,
+        sex: this.personal.sex,
+        idstd: this.personal.idstd,
+        course: this.personal.course,
+        class: this.personal.class,
+        study: this.personal.study,
+        ten: this.personal.ten,
+        namee: this.personal.namee,
+        snamee: this.personal.snamee,
+        idCard: this.personal.idCard,
+        stage: this.personal.stage,
+        stmonth: this.personal.stmonth,
+        nation: this.personal.nation,
+        race: this.personal.race,
+        religian: this.personal.religian,
+        bday: this.personal.bday,
+        badd: this.personal.badd,
+        bprovince: this.personal.bprovince,
+        fname: this.family.father.fname,
+        fsername: this.family.father.fsername,
+        fage: this.family.father.fage,
+        feducation: this.family.father.feducation,
+        fwork: this.family.father.fwork,
+        fcareer: this.family.father.fcareer,
+        fpost: this.family.father.fpost,
+        fbeloin: this.family.father.fbeloin,
+        fatwork: this.family.father.fatwork,
+        ftell: this.family.father.ftell,
+        fphone: this.family.father.fphone,
+        fsalary: this.family.father.fsalary,
+        mname: this.family.mather.mname,
+        msername: this.family.mather.msername,
+        mage: this.family.mather.mage,
+        meducation: this.family.mather.meducation,
+        mwork: this.family.mather.mwork,
+        mcareer: this.family.mather.mcareer,
+        mpost: this.family.mather.mpost,
+        mbeloin: this.family.mather.mbeloin,
+        matwork: this.family.mather.matwork,
+        mtell: this.family.mather.mtell,
+        mphone: this.family.mather.mphone,
+        msalary: this.family.mather.msalary,
+        residential: this.address.residential,
+        domicile: this.address.domicile,
+        addres: this.address.addres,
+        dorm: this.address.dorm,
+        stell: this.address.stell,
+        privileage: this.withdraw.privileage,
+        welfare: this.withdraw.welfare,
+        blood: this.health.blood,
+        disease: this.health.disease,
+        treatment: this.health.treatment,
+        healthpb: this.health.healthpb
       }
 
       console.log('data xxx', data)
@@ -164,11 +214,13 @@ export default {
       this.tab = tab
       this.changeTab(this.tab)
     },
-    handleWithdrawData(FamilyData, tab) {
+    handleWithdrawData(WithdrawData, tab) {
+      this.withdraw = WithdrawData
       this.changeTab(tab)
     },
     handleHealthData(HealthData, tab) {
-      console.log('main handleHealthData ', this.HealthData)
+      this.health = HealthData
+      console.log('main handleHealthData ', this.health)
       // this.changeTab(tab)
       this.saveData()
     },

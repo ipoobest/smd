@@ -33,6 +33,7 @@
           <v-col class="pt-0 pb-0" cols="6">
             <v-select
               v-model="FamilyData.mstatus"
+              :items="itemsMstatus"
               dense
               outlined
               label="สถานะภาพ (*หากเสียชีวิตแล้วไม่ต้องตอบเรื่องอาชีพ)"
@@ -41,6 +42,7 @@
           <v-col class="pt-0 pb-0" cols="6">
             <v-select
               v-model="FamilyData.father.feducation"
+              :items="itemsEducation"
               dense
               outlined
               label="คุณวุติทางการศึกษา"
@@ -51,6 +53,7 @@
           <v-col class="pt-0 pb-0" cols="7">
             <v-select
               v-model="FamilyData.father.fwork"
+              :items="itemsWork"
               dense
               outlined
               label="ประเภทของงาน"
@@ -74,7 +77,7 @@
           </v-col>
           <v-col class="pt-0 pb-0" cols="6">
             <v-text-field
-              v-model="FamilyData.mather.fbeloin"
+              v-model="FamilyData.father.fbeloin"
               dense
               outlined
               label="สังกัด"
@@ -147,6 +150,7 @@
           <v-col class="pt-0 pb-0" cols="6">
             <v-select
               v-model="FamilyData.mather.meducation"
+              :items="itemsEducation"
               dense
               outlined
               label="คุณวุติทางการศึกษา"
@@ -157,6 +161,7 @@
           <v-col class="pt-0 pb-0" cols="7">
             <v-select
               v-model="FamilyData.mather.mwork"
+              :items="itemsWork"
               dense
               outlined
               label="ประเภทของงาน"
@@ -164,7 +169,7 @@
           </v-col>
           <v-col class="pt-0 pb-0" cols="5">
             <v-text-field
-              v-model="FamilyData.father.mcareer"
+              v-model="FamilyData.mather.mcareer"
               dense
               outlined
               label="อาชีพ"
@@ -354,7 +359,16 @@ export default {
         contact: '',
         related: '',
         ctell: ''
-      }
+      },
+      itemsEducation: ['ปริญาตรี', 'ปริญาโท', 'ปริญาเอก', 'ตำกว่าปริญาตรี'],
+      itemsMstatus: [
+        'อยู่ด้วยกัน',
+        'หย่าร้าง',
+        'แยกกันอยู่',
+        'แต่งงานใหม่',
+        'เสียชีวิต'
+      ],
+      itemsWork: ['อาจารย์', 'ข้าราชการ', 'ลูกจ้างประจำ']
     }
   },
   methods: {
