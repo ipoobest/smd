@@ -42,6 +42,7 @@ import Personal from '@/components/students/PersonalForm.vue'
 import Withdraw from '@/components/students/WithdrawForm.vue'
 
 import * as StudentsApi from '@/utils/students'
+import * as User from '@/utils/user'
 
 export default {
   components: {
@@ -137,6 +138,16 @@ export default {
   },
   mounted() {},
   methods: {
+    async createUser() {
+      const data = {
+        username: this.personal.idstd,
+        password: this.personal.idCard,
+        type: 'student'
+      }
+      console.log('creauser xxx ', data)
+      const response = await User.createUser(data)
+      console.log('create response xx ', response)
+    },
     async saveData() {
       const data = {
         tth: this.personal.tth,
@@ -200,11 +211,12 @@ export default {
       console.log('data xxx', data.profile)
       const response = await StudentsApi.create(data)
       console.log('res ', response)
+      this.createUser()
     },
     handlePersonalData(PersonalForm, tab) {
       this.personal = PersonalForm
       this.changeTab(tab)
-      console.log('main ', this.personal.profile.imageURL)
+      console.log('main ', this.personal)
     },
     handleAddressData(AdderessData, tab) {
       this.address = AdderessData
