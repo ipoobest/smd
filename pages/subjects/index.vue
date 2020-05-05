@@ -118,8 +118,7 @@ export default {
         subjectCode: '',
         subjectName: '',
         credit: '',
-        hour: '',
-        teatherId: ''
+        hour: ''
       }
     }
   },

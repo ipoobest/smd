@@ -14,12 +14,7 @@
               hide-details
             ></v-text-field>
           </v-card-title>
-          <v-data-table
-            :headers="headers"
-            :items="items"
-            :search="search"
-            @pagination="handlePagination"
-          >
+          <v-data-table :headers="headers" :items="itemStu" :search="search">
             <template v-slot:top>
               <v-toolbar flat color="white">
                 <v-divider class="mx-4" inset vertical></v-divider>
@@ -40,9 +35,6 @@
                 mdi-delete
               </v-icon>
             </template>
-            <template v-slot:no-data>
-              <v-btn color="primary" @click="initialize">Reset</v-btn>
-            </template>
           </v-data-table>
         </v-card>
       </v-col>
@@ -51,69 +43,42 @@
 </template>
 
 <script>
+import * as StudentsApi from '@/utils/students'
 export default {
   data() {
     return {
       dialog: false,
       headers: [
-        { text: 'รหัสประจำตัว', value: '' },
-        { text: 'ชื่อ', value: '' },
-        { text: 'นามสกุล', value: '' },
-        { text: 'หลักสูตร', value: '' },
-        { text: 'ระดับชั้น', value: '' }
+        { text: 'รหัสประจำตัว', value: 'badd' },
+        { text: 'ชื่อ', value: 'namet' },
+        { text: 'นามสกุล', value: 'snamet' },
+        { text: 'หลักสูตร', value: 'course' },
+        { text: 'ระดับชั้น', value: 'class' }
       ],
-      items: [],
+      itemStu: [],
       search: ``,
       title: `นักเรียน`,
       desserts: [],
       editedIndex: -1
     }
   },
-
-  watch: {
-    dialog(val) {
-      val || this.close()
-    }
-  },
   mounted() {
     this.getDataFromApi().then((result) => (this.items = result))
   },
   methods: {
-    async getDataFromApi(limit = 50, skip = 0) {},
-    async createTeacher(data) {},
-    async updateTeacher(data) {},
-    async deteleTeacher(itemId) {},
-    async handlePagination(e) {
-      if (e.page === e.pageCount) {
-        const result = await this.getDataFromApi(50, e.itemsLength)
+    async getDataFromApi(limit = 50, skip = 0) {
+      const response = await StudentsApi.get()
+      this.itemStu = response.data.results
+      console.log('data from server ', this.itemStu)
+    }
+  },
+  async handlePagination(e) {
+    if (e.page === e.pageCount) {
+      const result = await this.getDataFromApi(50, e.itemsLength)
 
-        if (result) {
-          this.items = [...this.items, ...result]
-        }
+      if (result) {
+        this.items = [...this.items, ...result]
       }
-    },
-    initialize() {
-      console.log('initialize')
-    },
-    editItem(item) {
-      console.log('item id ', item)
-      this.editedIndex = this.items.indexOf(item)
-      this.editedItem = Object.assign({}, item)
-
-      this.dialog = true
-    },
-    deleteItem(item) {
-      const index = this.items.indexOf(item)
-      confirm('ยืนยีนการลบบัญชีผู้ใช้') && this.deteleTeacher(item.objectId)
-      this.items.splice(index, 1)
-    },
-    close() {
-      console.log('closd')
-      this.dialog = false
-      setTimeout(() => {
-        this.editedItem = Object.assign({}, this.defaultItem)
-        this.editedIndex = -1
-      }, 300)
     }
   }
 }

@@ -1,7 +1,7 @@
 import { request } from './api'
 
 export function get() {
-  const url = `${process.env.parseUrl}/classes/students`
+  const url = `${process.env.parseUrl}/classes/Students`
   return request('get', url, {})
 }
 

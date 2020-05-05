@@ -105,9 +105,6 @@
                 mdi-delete
               </v-icon>
             </template>
-            <template v-slot:no-data>
-              <v-btn color="primary" @click="initialize">Reset</v-btn>
-            </template>
           </v-data-table>
         </v-card>
       </v-col>
@@ -192,9 +189,7 @@ export default {
         }
       }
     },
-    initialize() {
-      console.log('initialize')
-    },
+
     editItem(item) {
       console.log('item id ', item)
       this.editedIndex = this.items.indexOf(item)
