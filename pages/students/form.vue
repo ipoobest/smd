@@ -80,7 +80,7 @@ export default {
         badd: '',
         bprovince: '',
         profile: {
-          imageURL: ''
+          imageURL: 'imageUrl'
         }
       },
       family: {
