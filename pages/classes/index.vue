@@ -18,6 +18,7 @@
             :headers="headers"
             :items="items"
             :search="search"
+            @click:row="addStudent"
             @pagination="handlePagination"
           >
             <template v-slot:top>
@@ -211,6 +212,13 @@ export default {
         this.items.push(this.editedItem)
       }
       this.close()
+    },
+    addStudent(item) {
+      console.log('item id ', item)
+      this.$router.push({
+        name: 'classes-id',
+        params: { id: item.objectId }
+      })
     }
   }
 }
