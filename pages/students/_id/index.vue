@@ -1,5 +1,8 @@
 <template>
-  <div>Hello student info</div>
+  <div>
+    student info
+    <h3>{{ items.idstd }}</h3>
+  </div>
 </template>
 
 <script>
