@@ -23,7 +23,5 @@ export function update(data) {
 
 export function deleteSubject(teacherId) {
   const url = `${process.env.parseUrl}/classes/Subjects/${teacherId}`
-  console.log('urlsss ', url)
-  console.log('dataaa s ', teacherId)
   return request('delete', url, {})
 }

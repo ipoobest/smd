@@ -41,42 +41,49 @@
                           <v-col cols="12" sm="6" md="6">
                             <v-text-field
                               v-model="editedItem.username"
+                              outlined
                               label="username"
                             ></v-text-field>
                           </v-col>
                           <v-col cols="12" sm="6" md="6">
                             <v-text-field
                               v-model="editedItem.password"
+                              outlined
                               label="password"
                             ></v-text-field>
                           </v-col>
                           <v-col cols="12" sm="6" md="4">
                             <v-text-field
                               v-model="editedItem.teacherId"
+                              outlined
                               label="รหัสประจำตัว"
                             ></v-text-field>
                           </v-col>
                           <v-col cols="12" sm="6" md="4">
                             <v-text-field
                               v-model="editedItem.teacherPosition"
+                              outlined
                               label="ตำแหน่ง"
                             ></v-text-field>
                           </v-col>
                           <v-col cols="12" sm="6" md="4">
                             <v-text-field
                               v-model="editedItem.title"
+                              outlined
                               label="คำนำหน้า"
                             ></v-text-field>
                           </v-col>
                           <v-col cols="12" sm="6" md="6">
                             <v-text-field
                               v-model="editedItem.firstName"
+                              outlined
                               label="ชื่อ"
                             ></v-text-field>
                           </v-col>
                           <v-col cols="12" sm="6" md="6">
                             <v-text-field
                               v-model="editedItem.lastName"
+                              outlined
                               label="นามสกุล"
                             ></v-text-field>
                           </v-col>

@@ -7,7 +7,6 @@ export function get() {
 
 export function getById(studentId) {
   const url = `${process.env.parseUrl}/classes/Students/${studentId}`
-  console.log('url students ', url)
   return request('get', url, {})
 }
 

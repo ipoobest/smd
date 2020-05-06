@@ -41,24 +41,28 @@
                           <v-col cols="12" sm="6" md="6">
                             <v-text-field
                               v-model="datas.subjectCode"
+                              outlined
                               label="รหัสวิชา"
                             ></v-text-field>
                           </v-col>
                           <v-col cols="12" sm="6" md="6">
                             <v-text-field
                               v-model="datas.subjectName"
+                              outlined
                               label="ชื่อวิชา"
                             ></v-text-field>
                           </v-col>
                           <v-col cols="12" sm="6" md="4">
                             <v-text-field
                               v-model="datas.credit"
+                              outlined
                               label="หน่วยกิต"
                             ></v-text-field>
                           </v-col>
                           <v-col cols="12" sm="6" md="4">
                             <v-text-field
                               v-model="datas.hour"
+                              outlined
                               label="จำนวนชั่วโมงที่สอน"
                             ></v-text-field>
                           </v-col>

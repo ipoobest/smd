@@ -16,14 +16,10 @@ export function create(data) {
 
 export function update(data) {
   const url = `${process.env.parseUrl}/users/${data.objectId}`
-  console.log('urlsss ', url)
-  console.log('dataaa s ', data)
   return request('put', url, data)
 }
 
 export function deleteTeacher(teacherId) {
   const url = `${process.env.parseUrl}/users/${teacherId}`
-  console.log('urlsss ', url)
-  console.log('dataaa s ', teacherId)
   return request('delete', url, {})
 }
