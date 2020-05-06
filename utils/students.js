@@ -5,6 +5,12 @@ export function get() {
   return request('get', url, {})
 }
 
+export function getById(studentId) {
+  const url = `${process.env.parseUrl}/classes/Students/${studentId}`
+  console.log('url students ', url)
+  return request('get', url, {})
+}
+
 export function create(data) {
   const url = `${process.env.parseUrl}/classes/Students`
   return request('post', url, data)

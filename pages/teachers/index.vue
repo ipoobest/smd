@@ -161,7 +161,7 @@ export default {
   },
   methods: {
     async getDataFromApi(limit = 50, skip = 0) {
-      const response = await TeachersApi.get()
+      const response = await TeachersApi.get(limit, skip)
       console.log('res ', response.data.results)
       this.items = response.data.results
     },

@@ -14,7 +14,12 @@
               hide-details
             ></v-text-field>
           </v-card-title>
-          <v-data-table :headers="headers" :items="itemStu" :search="search">
+          <v-data-table
+            :headers="headers"
+            :items="itemStu"
+            :search="search"
+            @click:row="editItem"
+          >
             <template v-slot:top>
               <v-toolbar flat color="white">
                 <v-divider class="mx-4" inset vertical></v-divider>
@@ -26,14 +31,6 @@
                   >
                 </v-card-title>
               </v-toolbar>
-            </template>
-            <template v-slot:item.actions="{ item }">
-              <v-icon small class="mr-2" @click="editItem(item)">
-                mdi-pencil
-              </v-icon>
-              <v-icon small @click="deleteItem(item)">
-                mdi-delete
-              </v-icon>
             </template>
           </v-data-table>
         </v-card>
@@ -49,7 +46,7 @@ export default {
     return {
       dialog: false,
       headers: [
-        { text: 'รหัสประจำตัว', value: 'badd' },
+        { text: 'รหัสประจำตัว', value: 'idstd' },
         { text: 'ชื่อ', value: 'namet' },
         { text: 'นามสกุล', value: 'snamet' },
         { text: 'หลักสูตร', value: 'course' },
@@ -70,15 +67,22 @@ export default {
       const response = await StudentsApi.get()
       this.itemStu = response.data.results
       console.log('data from server ', this.itemStu)
-    }
-  },
-  async handlePagination(e) {
-    if (e.page === e.pageCount) {
-      const result = await this.getDataFromApi(50, e.itemsLength)
+    },
+    async handlePagination(e) {
+      if (e.page === e.pageCount) {
+        const result = await this.getDataFromApi(50, e.itemsLength)
 
-      if (result) {
-        this.items = [...this.items, ...result]
+        if (result) {
+          this.items = [...this.items, ...result]
+        }
       }
+    },
+    editItem(item) {
+      console.log('item id ', item)
+      this.$router.push({
+        name: 'students-id',
+        params: { id: item.objectId }
+      })
     }
   }
 }
