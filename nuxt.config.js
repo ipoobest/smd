@@ -78,8 +78,7 @@ module.exports = {
   /*
    ** Build configuration
    */
-  srcDir: 'src',
-  buildDir: 'functions/.nuxt',
+
   build: {
     extractCSS: true,
     /*
