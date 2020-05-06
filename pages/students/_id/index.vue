@@ -5,12 +5,16 @@
 <script>
 import * as StudentsApi from '@/utils/students'
 export default {
+  data() {
+    return {
+      items: []
+    }
+  },
   async mounted() {
-    console.log('parsam', this.$route.params)
     const id = this.$route.params.id
-    console.log('parmas', id)
     const reponse = await StudentsApi.getById(id)
-    console.log('response ', reponse)
+    this.items = reponse.data
+    console.log('response data', this.items)
   }
 }
 </script>

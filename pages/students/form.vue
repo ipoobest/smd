@@ -144,9 +144,9 @@ export default {
         password: this.personal.idCard,
         type: 'student'
       }
-      console.log('creauser xxx ', data)
       const response = await User.createUser(data)
-      console.log('create response xx ', response)
+      console.log('create response ', response)
+      this.$router.replace({ name: 'students' })
     },
     async saveData() {
       const data = {
